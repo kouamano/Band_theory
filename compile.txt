@@ -1,0 +1,16 @@
+# QE 6.4.1
+## GPUノードにlogin
+qsub -I -q inter
+
+## module load
+module load pgi/18.10
+module load openmpi/pgi1810/2.1.2
+module load cuda/10.0
+
+## 以下失敗
+./configure --with-cuda=/lustre/apps/cuda-10.0 --with-cuda-runtime=/lustre/apps/cuda-10.0 --with-cuda-cc=/lustre/apps/cuda-10.0/bin/nvcc --enable-openmp
+## 以下成功、makeも成功、ただしGPUはoff
+./configure
+## 以下成功、ただしmakeは失敗
+./configure --with-cuda=/lustre/apps/cuda-10.0 --with-cuda-runtime=/lustre/apps/cuda-10.0  --enable-openmp
+
